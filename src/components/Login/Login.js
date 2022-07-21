@@ -1,5 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 
 const LoginContainer = styled.div`
     position: fixed;
@@ -13,11 +16,11 @@ const LoginContainer = styled.div`
     align-items: center;
 `
 
-const LoginForm = styled.div`
+const LoginForm = styled.form`
     width: 500px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 21px;
 `
 
 const Input = styled.input`
@@ -25,6 +28,11 @@ const Input = styled.input`
     border-bottom: 1px solid #1890ff;
     padding: 5px 10px;
     outline: none;
+`
+
+const ErrorSpan = styled.span`
+    font-size: 10px;
+    text-align: left;
 `
 
 const Button = styled.button`
@@ -36,12 +44,32 @@ const Button = styled.button`
 
 function Login(){
 
+    const formik = useFormik({
+        initialValues: {
+          email: '',
+          password: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+            password: Yup.string()
+            .min(3, 'Must be minimum 3 characters')
+            .required('Required'),
+        }),
+        onSubmit: values => {
+          console.log(values);
+        },
+      });
+
     return(
         <LoginContainer>
-            <LoginForm>
-                <Input type="text" placeholder="Email"/>
-                <Input type="password" placeholder="Password"/>
-                <Button>Login</Button>
+            <LoginForm onSubmit={formik.handleSubmit}>
+                <Input type="text" id="email" placeholder="Enter email" name="email" {...formik.getFieldProps('email')} />
+                {formik.touched.email && formik.errors.email ? (<ErrorSpan>{formik.errors.email}</ErrorSpan>) : null}
+                <Input type="password" id="password" placeholder="Enter password" name="password" {...formik.getFieldProps('password')} />
+                {formik.touched.email && formik.errors.password ? (<ErrorSpan>{formik.errors.password}</ErrorSpan>) : null}
+                <Button type="submit">Login</Button>
             </LoginForm>
         </LoginContainer>
     )
