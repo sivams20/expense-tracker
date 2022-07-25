@@ -2,6 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/login/loginActions";
 
 
 const LoginContainer = styled.div`
@@ -43,6 +45,7 @@ const Button = styled.button`
 `
 
 function Login(){
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -58,7 +61,8 @@ function Login(){
             .required('Required'),
         }),
         onSubmit: values => {
-          console.log(values);
+            console.log(values);
+            dispatch(loginUser(values));
         },
       });
 
