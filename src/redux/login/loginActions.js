@@ -40,7 +40,7 @@ export const loginUser = (credential) =>{
         })
         .catch(error => {
             console.log(error);
-            const errorMessage = error;
+            //const errorMessage = error;
             //dispatch(loginFailure(errorMessage));
         })
     }
