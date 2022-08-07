@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/login/loginActions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const LoginContainer = styled.div`
     position: fixed;
@@ -47,7 +47,6 @@ const Button = styled.button`
 function Login(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const formik = useFormik({
         initialValues: {
           email: '',
@@ -63,8 +62,7 @@ function Login(){
         }),
         onSubmit: values => {
             console.log(values);
-            dispatch(loginUser(values));
-            navigate("transaction");
+            dispatch(loginUser(values, navigate));
         },
       });
 
