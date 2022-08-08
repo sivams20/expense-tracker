@@ -61,7 +61,6 @@ function Login(){
             .required('Required'),
         }),
         onSubmit: values => {
-            console.log(values);
             dispatch(loginUser(values, navigate));
         },
       });

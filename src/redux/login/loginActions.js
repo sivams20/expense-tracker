@@ -34,6 +34,7 @@ export const loginUser = (credential, navigate) =>{
         axios.post(url, credential)
         .then(response =>{
             dispatch(loginSuccess(response));
+            localStorage.setItem('token', response.data.token);
             navigate("transaction");
         })
         .catch(error => {
