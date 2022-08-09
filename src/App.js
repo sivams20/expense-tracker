@@ -1,7 +1,11 @@
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Category from './components/Category/Category';
+import { Error } from './components/Error/Error';
 import Login from './components/Login/Login';
+import Navbar from './components/Navbar/Navbar';
+import Spending from './components/Spending/Spending';
 import Transaction from './components/Transaction/Transaction';
 import store from './redux/store';
 
@@ -10,9 +14,13 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
+          <Navbar/>
           <Routes>
-            <Route exact path='/' element={ <Login /> } />
+            <Route exact path='/login' element={ <Login /> } />
+            <Route path='spending' element={ <Spending /> } />
             <Route path='transaction' element={ <Transaction /> } />
+            <Route path='category' element={ <Category /> } />
+            <Route path='*' element={ <Error /> } />
           </Routes>
         </div>
       </BrowserRouter>
