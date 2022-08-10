@@ -33,9 +33,9 @@ export const loginUser = (credential, navigate) =>{
         const url = 'http://localhost:5000/user/signin';
         axios.post(url, credential)
         .then(response =>{
-            dispatch(loginSuccess(response));
+            dispatch(loginSuccess(response.data.token));
             localStorage.setItem('token', response.data.token);
-            navigate("transaction");
+            navigate("spending");
         })
         .catch(error => {
             console.log(error);
