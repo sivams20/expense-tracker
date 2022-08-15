@@ -24,13 +24,14 @@ const SpendingForm = styled.form`
     gap: 21px;
 `
 
-const Spending = () => {
+const Spending = ({ ...props }) => {
     const [date, setDate] = useState(new Date());
     const options = [
         { id: 1, value: 'fruit' },
         { id: 2, value: 'vegetable' },
         { id: 3, value: 'meat' },
     ];
+
     const formik = useFormik({
         initialValues: {
           price: '123',
@@ -44,6 +45,7 @@ const Spending = () => {
         }),
         onSubmit: values => {
             console.log(values);
+            console.log(date);
         },
       });
     return(
@@ -55,7 +57,10 @@ const Spending = () => {
                     <option key={option.id} value={option.value}>{option.value}</option>
                     ))}
                 </select>
-                <DatePicker selected={date} onChange={(date) => setDate(date)} id="date" name="date" {...formik.getFieldProps('date')} />
+                {/* <DatePicker selected={date} dateFormat="MMMM d, yyyy" name="date" onChange={e => { setFieldValue("date", e)}} /> */}
+                {/* <DatePicker {...field} name="date" placeholder="Date" selected={date} dateFormat="MMMM d, yyyy" onChange={(e) => { setFieldValue(field.name, e) }} /> */}
+                {/* <DatePicker name="date" selected={date} onChange={e => {}} /> */}
+                <DatePicker selected={date} onChange={(date) => setDate(date)} id="date" name="date" />
                 <button type="submit">Add Expense</button>
             </SpendingForm>
         </SpendingContainer>
