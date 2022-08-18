@@ -11,7 +11,7 @@ axios.interceptors.request.use((request)=>{
     return request;
   }
   const token = localStorage.getItem('token');
-  request.headers.Authorization = token;
+  request.headers.common.Authorization = `Bearer ${token}`;
   return request;
 });
 
