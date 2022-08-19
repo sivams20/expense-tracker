@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const SpendingContainer = styled.div`
@@ -47,24 +47,29 @@ const Spending = ({ ...props }) => {
             console.log(values);
             console.log(date);
         },
-      });
+    });
     return(
-        <SpendingContainer>
-            <SpendingForm onSubmit={formik.handleSubmit}>
-                <input type="text" placeholder="price" id="price" name="price" {...formik.getFieldProps('price')} />
-                <select id="category" name="category" {...formik.getFieldProps('category')}>
-                    {options.map((option) => (
-                    <option key={option.id} value={option.value}>{option.value}</option>
-                    ))}
-                </select>
-                {/* <DatePicker selected={date} dateFormat="MMMM d, yyyy" name="date" onChange={e => { setFieldValue("date", e)}} /> */}
-                {/* <DatePicker {...field} name="date" placeholder="Date" selected={date} dateFormat="MMMM d, yyyy" onChange={(e) => { setFieldValue(field.name, e) }} /> */}
-                {/* <DatePicker name="date" selected={date} onChange={e => {}} /> */}
-                <DatePicker selected={date} onChange={(date) => setDate(date)} id="date" name="date" />
-                <button type="submit">Add Expense</button>
-            </SpendingForm>
-        </SpendingContainer>
+        <Formik>
+            <SpendingContainer>
+                <SpendingForm onSubmit={formik.handleSubmit}>
+                    <input type="text" placeholder="price" id="price" name="price" {...formik.getFieldProps('price')} />
+                    <select id="category" name="category" {...formik.getFieldProps('category')}>
+                        {options.map((option) => (
+                        <option key={option.id} value={option.value}>{option.value}</option>
+                        ))}
+                    </select>
+                    {/* <DatePicker selected={date} dateFormat="MMMM d, yyyy" name="date" onChange={e => { setFieldValue("date", e)}} /> */}
+                    {/* <DatePicker {...field} name="date" placeholder="Date" selected={date} dateFormat="MMMM d, yyyy" onChange={(e) => { setFieldValue(field.name, e) }} /> */}
+                    {/* <DatePicker name="date" selected={date} onChange={e => {}} /> */}
+                    {/* <DatePicker selected={date} onChange={(date) => setDate(date)} id="date" name="date" /> */}
+                    {/* <DatePicker {...field} {...props} selected={(field.value && new Date(field.value)) || null}
+                    onChange={val => { setFieldValue(field.name, val);}} /> */}
+                    <button type="submit">Add Expense</button>
+                </SpendingForm>
+            </SpendingContainer>
+        </Formik>
     )
+    
 }
 
 export default Spending;
