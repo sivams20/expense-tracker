@@ -2,7 +2,8 @@ import { FETCH_CATEGORY_FAILURE, FETCH_CATEGORY_REQUEST, FETCH_CATEGORY_SUCCESS 
 
 const initialState = {
     loading: false,
-    error: ''
+    error: '',
+    categories: []
 }
 
 const categoryReducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const categoryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: ''
+                error: '',
+                categories: action.payload
             }
 
         case FETCH_CATEGORY_FAILURE :

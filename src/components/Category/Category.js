@@ -5,7 +5,8 @@ import { fetchCategory } from "../../redux/category/categoryActions";
 const Category = () => {
 
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.category);
+    const categories = useSelector(state => state.category.categories);
+    console.log(categories);
 
     useEffect(() => {
         dispatch(fetchCategory());
@@ -14,6 +15,11 @@ const Category = () => {
     return(
         <div>
             Category
+            <div>
+                {categories.map(item => (
+                    <p key={item._id}>{item.name}</p>
+                ))}
+            </div>
         </div>
     )
 }

@@ -7,9 +7,10 @@ export const fetchCategoryRequest = () => {
     }
 }
 
-export const fetchCategorySuccess = () => {
+export const fetchCategorySuccess = (categories) => {
     return {
-        type: FETCH_CATEGORY_SUCCESS
+        type: FETCH_CATEGORY_SUCCESS,
+        payload: categories
     }
 }
 
@@ -25,8 +26,7 @@ export const fetchCategory = () =>{
         const url = 'http://localhost:5000/category/categories';
         axios.get(url)
         .then(response =>{
-            dispatch(fetchCategorySuccess(response.data));
-            console.log('Category', response);
+            dispatch(fetchCategorySuccess(response.data.categories));
         })
         .catch(error => {
             console.log(error);
