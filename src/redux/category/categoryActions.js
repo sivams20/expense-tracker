@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FETCH_CATEGORY_FAILURE, FETCH_CATEGORY_REQUEST, FETCH_CATEGORY_SUCCESS } from "./categoryActionTypes"
+import { ADD_CATEGORY_FAILURE, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, FETCH_CATEGORY_FAILURE, FETCH_CATEGORY_REQUEST, FETCH_CATEGORY_SUCCESS } from "./categoryActionTypes"
 
 export const fetchCategoryRequest = () => {
     return {
@@ -20,6 +20,26 @@ export const fetchCategoryFailure = () => {
     }
 }
 
+export const addCategoryRequest = (category) => {
+    return {
+        type: ADD_CATEGORY_REQUEST,
+        payload: category
+    }
+}
+
+export const addCategoryFailure = () => {
+    return {
+        type: ADD_CATEGORY_FAILURE
+    }
+}
+
+export const addCategorySuccess = (category) => {
+    return {
+        type: ADD_CATEGORY_SUCCESS,
+        payload: category
+    }
+}
+
 export const fetchCategory = () =>{
     return (dispatch)=>{
         dispatch(fetchCategoryRequest());
@@ -27,6 +47,22 @@ export const fetchCategory = () =>{
         axios.get(url)
         .then(response =>{
             dispatch(fetchCategorySuccess(response.data.categories));
+        })
+        .catch(error => {
+            console.log(error);
+            const errorMessage = error;
+            dispatch(fetchCategoryFailure(errorMessage));
+        })
+    }
+}
+
+export const addCategory = (data) => {
+    return (dispatch) => {
+        dispatch(addCategoryRequest(data));
+        const url = 'http://localhost:5000/category/add';
+        axios.post(url, data)
+        .then(response =>{
+            dispatch(fetchCategorySuccess(response.data));
         })
         .catch(error => {
             console.log(error);

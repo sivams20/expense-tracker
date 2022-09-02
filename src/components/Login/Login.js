@@ -63,7 +63,7 @@ function Login(){
         onSubmit: values => {
             dispatch(loginUser(values, navigate));
         },
-      });
+    });
 
     return(
         <LoginContainer>
