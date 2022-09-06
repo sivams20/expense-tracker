@@ -1,12 +1,17 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, fetchCategory } from "../../redux/category/categoryActions";
+import { addCategory, fetchCategory, removeCategory } from "../../redux/category/categoryActions";
 
 const Category = () => {
 
     const dispatch = useDispatch();
     const categories = useSelector(state => state.category.categories);
+
+    const onRemoveItem = (item) =>{
+        const obj = { 'categoryId': item._id };
+        dispatch(removeCategory(obj));
+    }
 
     useEffect(() => {
         dispatch(fetchCategory());
@@ -32,8 +37,8 @@ const Category = () => {
             <button type="submit">Add</button>
             </form>
             <div>
-                {categories.map(item => (
-                    <p key={item._id}>{item.name}</p>
+                {categories.length && categories.map(item => (
+                    <p key={item._id} onClick={() => {onRemoveItem(item);}}>{item.name}</p>
                 ))}
             </div>
         </div>
