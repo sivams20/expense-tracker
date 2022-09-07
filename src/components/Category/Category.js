@@ -23,6 +23,7 @@ const Category = () => {
         },
         onSubmit: values => {
           dispatch(addCategory(values));
+          formik.resetForm();
         },
       });
 
@@ -37,7 +38,7 @@ const Category = () => {
             <button type="submit">Add</button>
             </form>
             <div>
-                {categories.length && categories.map(item => (
+                {categories.length > 0 && categories.map(item => (
                     <p key={item._id} onClick={() => {onRemoveItem(item);}}>{item.name}</p>
                 ))}
             </div>
