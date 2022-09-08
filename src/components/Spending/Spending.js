@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from "react-redux";
 
 const SpendingContainer = styled.div`
     /* position: fixed;
@@ -25,17 +26,11 @@ const SpendingForm = styled.form`
 `
 
 const Spending = ({ ...props }) => {
-    const [date, setDate] = useState(new Date());
-    const options = [
-        { id: 1, value: 'fruit' },
-        { id: 2, value: 'vegetable' },
-        { id: 3, value: 'meat' },
-    ];
-
+    const categories = useSelector(state => state.category.categories);
     const formik = useFormik({
         initialValues: {
-          price: '123',
-          category: 'meat',
+          price: '0',
+          category: '',
           date: new Date()
         },
         validationSchema: Yup.object({
@@ -45,7 +40,6 @@ const Spending = ({ ...props }) => {
         }),
         onSubmit: values => {
             console.log(values);
-            console.log(date);
         },
     });
     return(
@@ -54,8 +48,8 @@ const Spending = ({ ...props }) => {
                 <SpendingForm onSubmit={formik.handleSubmit}>
                     <input type="text" placeholder="price" id="price" name="price" {...formik.getFieldProps('price')} />
                     <select id="category" name="category" {...formik.getFieldProps('category')}>
-                        {options.map((option) => (
-                        <option key={option.id} value={option.value}>{option.value}</option>
+                        {categories.map((option) => (
+                        <option key={option._id} value={option.name}>{option.name}</option>
                         ))}
                     </select>
                     {/* <DatePicker selected={date} dateFormat="MMMM d, yyyy" name="date" onChange={e => { setFieldValue("date", e)}} /> */}
