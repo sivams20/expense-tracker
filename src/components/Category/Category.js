@@ -1,7 +1,20 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { addCategory, fetchCategory, removeCategory } from "../../redux/category/categoryActions";
+
+const CategoryContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
+const CategoryItem = styled.p`
+    width: 500px;
+    margin: 10px;
+`
 
 const Category = () => {
 
@@ -37,11 +50,11 @@ const Category = () => {
             />
             <button type="submit">Add</button>
             </form>
-            <div>
+            <CategoryContainer>
                 {categories.length > 0 && categories.map(item => (
-                    <p key={item._id} onClick={() => {onRemoveItem(item);}}>{item.name}</p>
+                    <CategoryItem key={item._id} onClick={() => {onRemoveItem(item);}}>{item.name}</CategoryItem>
                 ))}
-            </div>
+            </CategoryContainer>
         </div>
     )
 }
