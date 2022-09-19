@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { addCategory, fetchCategory, removeCategory } from "../../redux/category/categoryActions";
+import bin from "../../images/delete.png";
 
 const CategoryContainer = styled.div`
     display: flex;
@@ -11,9 +12,15 @@ const CategoryContainer = styled.div`
     justify-content: center;
 `
 
-const CategoryItem = styled.p`
+const CategoryItem = styled.div`
     width: 500px;
     margin: 10px;
+`
+
+const BinIcon = styled.img`
+    width: 13px;
+    height: 13px;
+    margin-left: 5px;
 `
 
 const Category = () => {
@@ -52,7 +59,10 @@ const Category = () => {
             </form>
             <CategoryContainer>
                 {categories.length > 0 && categories.map(item => (
-                    <CategoryItem key={item._id} onClick={() => {onRemoveItem(item);}}>{item.name}</CategoryItem>
+                    <CategoryItem key={item._id} >{item.name} 
+                        {/* <BinIcon></BinIcon> */}
+                        <BinIcon src={bin} alt="delete" onClick={() => {onRemoveItem(item);}} />
+                    </CategoryItem>
                 ))}
             </CategoryContainer>
         </div>
