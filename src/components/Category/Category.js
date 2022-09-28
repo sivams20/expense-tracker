@@ -35,7 +35,7 @@ const Category = () => {
 
     useEffect(() => {
         dispatch(fetchCategory());
-    }, [dispatch])
+    }, [])
 
     const formik = useFormik({
         initialValues: {
