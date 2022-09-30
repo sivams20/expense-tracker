@@ -15,6 +15,7 @@ function App() {
     <Provider store={store}>
         <div className="App">
           {pathname === '/' ? null : <Navbar />}
+          <div className='container'>
           <Routes>
             <Route exact path='/' element={ <Login /> } />
             <Route path='spending' element={ <Spending /> } />
@@ -22,6 +23,7 @@ function App() {
             <Route path='category' element={ <Category /> } />
             <Route path='*' element={ <Error /> } />
           </Routes>
+          </div>
         </div>
     </Provider>
   );
