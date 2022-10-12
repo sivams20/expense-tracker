@@ -10,25 +10,9 @@ function Navbar(){
         //     <NavLink to='/transaction'>Transaction</NavLink>
         //     <NavLink to='/category'>Categories</NavLink>
         // </nav>
-        <>
-          <div className='navbar'>
-            <Link to='#' className='menu-bars'>
-              {/* <FaIcons.FaBars onClick={showSidebar} /> */}
-            </Link>
-          </div>
+        <div className="nav-container">
           <nav className={'nav-menu active'}>
-          {/* <nav className={'nav-menu'}> */}
             <ul className='nav-menu-items'>
-              {/* {SidebarData.map((item, index) => {
-                return (
-                  <li key={index} className={item.cName}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </Link>
-                  </li>
-                );
-              })} */}
                 <li className={'nav-text'}>
                 <Link to='/spending'>
                     {/* {item.icon} */}
@@ -49,7 +33,7 @@ function Navbar(){
                 </li>              
             </ul>
           </nav>
-      </>
+        </div>
     )
 }
 
