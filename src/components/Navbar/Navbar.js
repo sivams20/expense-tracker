@@ -5,11 +5,6 @@ import './Navbar.css';
 
 function Navbar(){
     return(
-        // <nav>
-        //     <NavLink to='/spending'>Spending</NavLink>
-        //     <NavLink to='/transaction'>Transaction</NavLink>
-        //     <NavLink to='/category'>Categories</NavLink>
-        // </nav>
         <div className="nav-container">
           <nav className={'nav-menu active'}>
             <ul className='nav-menu-items'>
