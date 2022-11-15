@@ -41,9 +41,9 @@ const Category = () => {
         initialValues: {
           name: ''
         },
-        onSubmit: values => {
+        onSubmit: (values, onSubmitProps) => {
           dispatch(addCategory(values));
-          formik.resetForm();
+          onSubmitProps.resetForm();
         },
       });
 
