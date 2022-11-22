@@ -49,41 +49,41 @@ const Spending = ({ ...props }) => {
 
     console.log(categories);
     return(
-                        <Formik 
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            onSubmit={onSubmit}>
-                            {/* <SpendingContainer> */}
-                                <Form>
-                                    <div className="form-control">
-                                        <label htmlFor="amount">Amount</label>
-                                        <Field type="text" id="amount" name="amount" />
-                                        <ErrorMessage name="amount" component={TextError} />
-                                    </div>
-                                    <div className="form-control">
-                                        <label htmlFor="category">Category</label>
-                                        <Field as="select" id="category" name="category">
-                                            {categories.map(category => {
-                                                return(
-                                                    <option key={category._id} value={category.id}>
-                                                        {category.name}
-                                                    </option>
-                                                )
-                                            })}
-                                        </Field>
-                                        <ErrorMessage name="category" component={TextError} />
-                                    </div>
-                                    <div className="form-control">
-                                        <label htmlFor="note">Note</label>
-                                        <Field type="text" id="note" name="note" />
-                                        <ErrorMessage name="note">
-                                            {errorMssg => <div className="error">{errorMssg}</div>}
-                                        </ErrorMessage>
-                                    </div>
-                                    <button>Add Expense</button>
-                                </Form>
-                            {/* </SpendingContainer> */}
-                        </Formik>
+                    <Formik 
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={onSubmit}>
+                        {/* <SpendingContainer> */}
+                            <Form>
+                                <div className="form-control">
+                                    <label htmlFor="amount">Amount</label>
+                                    <Field type="text" id="amount" name="amount" />
+                                    <ErrorMessage name="amount" component={TextError} />
+                                </div>
+                                <div className="form-control">
+                                    <label htmlFor="category">Category</label>
+                                    <Field as="select" id="category" name="category">
+                                        {categories.map(category => {
+                                            return(
+                                                <option key={category._id} value={category.id}>
+                                                    {category.name}
+                                                </option>
+                                            )
+                                        })}
+                                    </Field>
+                                    <ErrorMessage name="category" component={TextError} />
+                                </div>
+                                <div className="form-control">
+                                    <label htmlFor="note">Note</label>
+                                    <Field type="text" id="note" name="note" />
+                                    <ErrorMessage name="note">
+                                        {errorMssg => <div className="error">{errorMssg}</div>}
+                                    </ErrorMessage>
+                                </div>
+                                <button>Add Expense</button>
+                            </Form>
+                        {/* </SpendingContainer> */}
+                    </Formik>
     )
     
 }
