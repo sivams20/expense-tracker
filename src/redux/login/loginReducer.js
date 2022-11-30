@@ -1,45 +1,51 @@
-import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT } from './loginActionTypes';
+import {
+  LOGIN,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "./loginActionTypes";
+
 const initialState = {
-    token: '',
-    loading: false,
-    isLoggedIn: false,
-    error: ''
-}
+  token: "",
+  loading: false,
+  isLoggedIn: false,
+  error: "",
+};
 
-const loginReducer = (state = initialState, action) => {
-    switch(action.type){
-        case LOGIN:
-            return{
-                ...state,
-                loading: true
-            }
-        
-        case LOGIN_SUCCESS:
-            return{
-                ...state,
-                token: action.payload,
-                loading: false,
-                isLoggedIn: true
-            }
+const loginReducer = (action, state = initialState) => {
+  switch (action.type) {
+    case LOGIN:
+      return {
+        ...state,
+        loading: true,
+      };
 
-        case LOGIN_FAILURE:
-            return{
-                ...state,
-                loading: false,
-                isLoggedIn: false,
-                error: action.payload
-            }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload,
+        loading: false,
+        isLoggedIn: true,
+      };
 
-        case LOGOUT:
-            return{
-                ...state,
-                isLoggedIn: false,
-                token: ''
-            }
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+        error: action.payload,
+      };
 
-        default :
-            return state;
-    }
-}
+    case LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        token: "",
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default loginReducer;
