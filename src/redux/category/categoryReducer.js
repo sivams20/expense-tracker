@@ -13,7 +13,7 @@ const initialState = {
   categories: [],
 };
 
-const categoryReducer = (action, state = initialState) => {
+const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CATEGORY_REQUEST:
       return {
