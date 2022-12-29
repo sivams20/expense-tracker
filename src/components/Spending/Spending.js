@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 // import styled from "styled-components";
 import DateView from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  Formik, Field, Form, ErrorMessage,
-} from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import TextError from "../Error/TextError";
@@ -48,7 +46,7 @@ function Spending() {
     if (categories.length === 0) {
       dispatch(fetchCategory());
     }
-  });
+  }, []);
 
   console.log(categories);
   return (

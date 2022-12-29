@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   addCategory,
   fetchCategory,
-  removeCategory,
+  removeCategory
 } from "../../redux/category/categoryActions";
 import bin from "../../images/delete.png";
 
@@ -42,12 +42,12 @@ function Category() {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      name: ""
     },
     onSubmit: (values, onSubmitProps) => {
       dispatch(addCategory(values));
       onSubmitProps.resetForm();
-    },
+    }
   });
 
   return (
@@ -57,8 +57,8 @@ function Category() {
         <button type="submit">Add</button>
       </form>
       <CategoryContainer>
-        {categories.length > 0
-          && categories.map((item) => (
+        {categories.length > 0 &&
+          categories.map((item) => (
             <CategoryItem key={item._id}>
               {item.name}
               {/* <BinIcon></BinIcon> */}
