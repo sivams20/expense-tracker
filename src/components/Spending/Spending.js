@@ -48,7 +48,6 @@ function Spending() {
     }
   });
 
-  console.log(categories);
   return (
     <Formik
       initialValues={initialValues}
