@@ -2,7 +2,7 @@ name: Expense Tracker - React
 
 on:
   push:
-    branches: -"master"
+    branches: - "master"
 
 jobs:
   build:
@@ -13,6 +13,6 @@ jobs:
         node-version: [15.x]
 
     steps:
-      - uses: actions/checkout@1
+      - uses: actions/checkout@v1
       - run: npm install
-      - run: npm build
+      - run: npm run build
