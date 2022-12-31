@@ -25,14 +25,14 @@ const initialValues = {
   date: new Date(),
   amount: "0",
   category: "",
-  note: "",
+  note: ""
 };
 
 const validationSchema = Yup.object({
   date: Yup.string().required("Required"),
   amount: Yup.string().required("Required"),
   category: Yup.string().required("Required"),
-  note: Yup.string().required("Required"),
+  note: Yup.string().required("Required")
 });
 
 const onSubmit = (values) => {
@@ -46,7 +46,7 @@ function Spending() {
     if (categories.length === 0) {
       dispatch(fetchCategory());
     }
-  }, []);
+  });
 
   console.log(categories);
   return (
