@@ -1,4 +1,5 @@
 import {
+  ADD_SPENDING_FAILURE,
   ADD_SPENDING_REQUEST,
   ADD_SPENDING_SUCCESS
 } from "./spendingActionTypes";
@@ -25,7 +26,7 @@ const spendingReducer = (state = initialState, action) => {
         spendings: [...state.spendings, action.payload]
       };
 
-    case ADD_SPENDING_REQUEST:
+    case ADD_SPENDING_FAILURE:
       return {
         ...state,
         loading: false,

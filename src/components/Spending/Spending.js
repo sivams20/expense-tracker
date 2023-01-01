@@ -31,7 +31,7 @@ function Spending() {
     if (categories.length === 0) {
       dispatch(fetchCategory());
     }
-  }, []);
+  });
 
   const initialValues = {
     date: new Date(),
