@@ -9,7 +9,7 @@ function Navbar() {
       <nav className="nav-menu active">
         <ul className="nav-menu-items">
           {menuList.map((menu) => (
-            <li className="nav-text">
+            <li className="nav-text" key={menu.name}>
               <Link to={menu.link}>
                 {/* {item.icon} */}
                 <span>{menu.name}</span>

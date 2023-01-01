@@ -18,3 +18,7 @@ export const addSpendingFailure = (data) => ({
   type: ADD_SPENDING_FAILURE,
   payload: data
 });
+
+export const addSpending = (data) => (dispatch) => {
+  dispatch(addSpendingSuccess(data));
+};

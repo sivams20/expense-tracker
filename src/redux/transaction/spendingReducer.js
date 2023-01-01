@@ -22,7 +22,7 @@ const spendingReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: "",
-        spendings: action.payload
+        spendings: [...state.spendings, action.payload]
       };
 
     case ADD_SPENDING_REQUEST:

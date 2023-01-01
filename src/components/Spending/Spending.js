@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import TextError from "../Error/TextError";
 import { fetchCategory } from "../../redux/category/categoryActions";
+import { addSpending } from "../../redux/transaction/spendingActions";
 
 // const SpendingContainer = styled.div`
 //     display: flex;
@@ -21,32 +22,34 @@ import { fetchCategory } from "../../redux/category/categoryActions";
 //     gap: 21px;
 // `;
 
-const initialValues = {
-  date: new Date(),
-  amount: "0",
-  category: "",
-  note: ""
-};
-
-const validationSchema = Yup.object({
-  date: Yup.string().required("Required"),
-  amount: Yup.string().required("Required"),
-  category: Yup.string().required("Required"),
-  note: Yup.string().required("Required")
-});
-
-const onSubmit = (values) => {
-  console.log(values);
-};
-
 function Spending() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
+  const values = useSelector((state) => state);
+  console.log(values);
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(fetchCategory());
     }
+  }, []);
+
+  const initialValues = {
+    date: new Date(),
+    amount: "0",
+    category: "",
+    note: ""
+  };
+
+  const validationSchema = Yup.object({
+    date: Yup.string().required("Required"),
+    amount: Yup.string().required("Required"),
+    category: Yup.string().required("Required"),
+    note: Yup.string().required("Required")
   });
+
+  const onSubmit = (values) => {
+    dispatch(addSpending(values));
+  };
 
   return (
     <Formik
