@@ -23,7 +23,7 @@ axios.interceptors.response.use(
   (error) => {
     console.log(error);
     return Promise.reject(error);
-  },
+  }
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -32,7 +32,7 @@ root.render(
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

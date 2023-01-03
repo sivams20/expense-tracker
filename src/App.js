@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Category from "./components/Category/Category";
 import Error from "./components/Error/Error";
@@ -17,15 +17,13 @@ function App() {
       <div className="App">
         {pathname === "/login" ? null : <Navbar />}
         <div className="container">
-          <HashRouter>
-            <Routes>
-              <Route path="login" element={<Login />} />
-              <Route path="spending" element={<Spending />} />
-              <Route path="transaction" element={<Transaction />} />
-              <Route path="category" element={<Category />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-          </HashRouter>
+          <Routes>
+            <Route path="login" element={<Login />} />
+            <Route path="spending" element={<Spending />} />
+            <Route path="transaction" element={<Transaction />} />
+            <Route path="category" element={<Category />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
         </div>
       </div>
     </Provider>
