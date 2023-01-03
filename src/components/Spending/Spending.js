@@ -25,10 +25,9 @@ import { addSpending } from "../../redux/transaction/spendingActions";
 function Spending() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
-  const isCategoryExist = categories.length === 0 ? true : "";
   useEffect(() => {
     dispatch(fetchCategory());
-  }, [isCategoryExist]);
+  }, [dispatch]);
 
   const initialValues = {
     date: new Date(),
