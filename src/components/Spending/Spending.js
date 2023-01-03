@@ -25,13 +25,10 @@ import { addSpending } from "../../redux/transaction/spendingActions";
 function Spending() {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
-  const values = useSelector((state) => state);
-  console.log(values);
+  const isCategoryExist = categories.length === 0 ? true : "";
   useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(fetchCategory());
-    }
-  });
+    dispatch(fetchCategory());
+  }, [isCategoryExist]);
 
   const initialValues = {
     date: new Date(),
@@ -48,6 +45,7 @@ function Spending() {
   });
 
   const onSubmit = (values) => {
+    console.log(values);
     dispatch(addSpending(values));
   };
 
@@ -68,7 +66,7 @@ function Spending() {
           <label htmlFor="category">Category</label>
           <Field as="select" id="category" name="category">
             {categories.map((category) => (
-              <option key={category._id} value={category.id}>
+              <option key={category._id} value={category._id}>
                 {category.name}
               </option>
             ))}
