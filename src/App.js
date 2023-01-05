@@ -15,10 +15,10 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        {pathname === "/login" ? null : <Navbar />}
+        {pathname === "/" ? null : <Navbar />}
         <div className="container">
           <Routes>
-            <Route path="login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="spending" element={<Spending />} />
             <Route path="transaction" element={<Transaction />} />
             <Route path="category" element={<Category />} />
