@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   ADD_SPENDING_FAILURE,
   ADD_SPENDING_REQUEST,
@@ -19,6 +20,17 @@ export const addSpendingFailure = (data) => ({
   payload: data
 });
 
-export const addSpending = (data) => (dispatch) => {
-  dispatch(addSpendingSuccess(data));
+export const addSpending = function (data) {
+  return function (dispatch) {
+    const url = "http://localhost:5000/spending/add";
+    axios
+      .post(url, data)
+      .then((response) => {
+        dispatch(addSpendingRequest);
+        dispatch(addSpendingSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(addSpendingFailure("Some error occured"));
+      });
+  };
 };
