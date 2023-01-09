@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import TextError from "../Error/TextError";
 import { fetchCategory } from "../../redux/category/categoryActions";
-import { addSpending } from "../../redux/transaction/spendingActions";
+import { addSpending } from "../../redux/spending/spendingActions";
 
 // const SpendingContainer = styled.div`
 //     display: flex;
