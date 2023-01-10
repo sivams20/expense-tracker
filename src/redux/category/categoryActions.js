@@ -8,48 +8,48 @@ import {
   FETCH_CATEGORY_SUCCESS,
   REMOVE_CATEGORY_FAILURE,
   REMOVE_CATEGORY_REQUEST,
-  REMOVE_CATEGORY_SUCCESS,
+  REMOVE_CATEGORY_SUCCESS
 } from "./categoryActionTypes";
 
 export const fetchCategoryRequest = () => ({
-  type: FETCH_CATEGORY_REQUEST,
+  type: FETCH_CATEGORY_REQUEST
 });
 
 export const fetchCategorySuccess = (categories) => ({
   type: FETCH_CATEGORY_SUCCESS,
-  payload: categories,
+  payload: categories
 });
 
 export const fetchCategoryFailure = () => ({
-  type: FETCH_CATEGORY_FAILURE,
+  type: FETCH_CATEGORY_FAILURE
 });
 
 export const addCategoryRequest = (category) => ({
   type: ADD_CATEGORY_REQUEST,
-  payload: category,
+  payload: category
 });
 
 export const addCategoryFailure = () => ({
-  type: ADD_CATEGORY_FAILURE,
+  type: ADD_CATEGORY_FAILURE
 });
 
 export const addCategorySuccess = (category) => ({
   type: ADD_CATEGORY_SUCCESS,
-  payload: category,
+  payload: category
 });
 
 export const removeCategoryRequest = (category) => ({
   type: REMOVE_CATEGORY_REQUEST,
-  payload: category,
+  payload: category
 });
 
 export const removeCategoryFailure = () => ({
-  type: REMOVE_CATEGORY_FAILURE,
+  type: REMOVE_CATEGORY_FAILURE
 });
 
 export const removeCategorySuccess = (data) => ({
   type: REMOVE_CATEGORY_SUCCESS,
-  payload: data,
+  payload: data
 });
 
 export const fetchCategory = () => (dispatch) => {

@@ -4,13 +4,13 @@ import {
   ADD_CATEGORY_SUCCESS,
   FETCH_CATEGORY_FAILURE,
   FETCH_CATEGORY_REQUEST,
-  FETCH_CATEGORY_SUCCESS,
+  FETCH_CATEGORY_SUCCESS
 } from "./categoryActionTypes";
 
 const initialState = {
   loading: false,
   error: "",
-  categories: [],
+  categories: []
 };
 
 const categoryReducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const categoryReducer = (state = initialState, action) => {
     case FETCH_CATEGORY_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
 
     case FETCH_CATEGORY_SUCCESS:
@@ -26,20 +26,20 @@ const categoryReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: "",
-        categories: action.payload,
+        categories: action.payload
       };
 
     case FETCH_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
 
     case ADD_CATEGORY_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
 
     case ADD_CATEGORY_SUCCESS:
@@ -47,14 +47,14 @@ const categoryReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: "",
-        categories: action.payload,
+        categories: action.payload
       };
 
     case ADD_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
 
     default:
