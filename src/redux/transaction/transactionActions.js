@@ -20,7 +20,7 @@ export const fetchTransactionFailure = (transaction) => ({
 
 export const fetchTransaction = () => (dispatch) => {
   dispatch(fetchTransactionRequest());
-  const url = "http://localhost:5000/transaction/transactions";
+  const url = "http://localhost:5000/spending/spendings";
   axios
     .get(url)
     .then((response) => {

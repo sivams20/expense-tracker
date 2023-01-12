@@ -44,7 +44,6 @@ function Spending() {
   });
 
   const onSubmit = (values) => {
-    console.log(values);
     dispatch(addSpending(values));
   };
 
