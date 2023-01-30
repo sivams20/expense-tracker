@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpending } from "../../redux/spending/spendingActions";
 import styled from "styled-components";
-import { format } from "date-fns";
+import { formattedDate } from "../../util/utils";
 
 const TransactionContainer = styled.div`
   display: flex;
@@ -37,10 +37,6 @@ function Transaction() {
   useEffect(() => {
     dispatch(fetchSpending());
   }, [dispatch]);
-
-  const formattedDate = (date) => {
-    return format(new Date(date), "yyyy-MM-dd");
-  };
 
   return (
     <TransactionContainer>
