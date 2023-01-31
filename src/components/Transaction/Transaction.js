@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSpending } from "../../redux/spending/spendingActions";
 import styled from "styled-components";
 import { formattedDate } from "../../util/utils";
+import { useNavigate } from "react-router-dom";
 
 const TransactionContainer = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ const Category = styled.div`
 
 function Transaction() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const spendings = useSelector((state) => state.spending.spendings);
   console.log(spendings);
 
@@ -42,7 +44,12 @@ function Transaction() {
     <TransactionContainer>
       {spendings.length > 0 &&
         spendings.map((item) => (
-          <TransactionItem>
+          <TransactionItem
+            key={item._id}
+            onClick={() => {
+              navigate(`/spending/${item._id}`);
+            }}
+          >
             <Category>
               <span>{item.note}</span>
               <span>{formattedDate(item.date)}</span>

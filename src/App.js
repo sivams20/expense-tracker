@@ -20,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="spending" element={<Spending />} />
+            <Route path="spending/:id" element={<Spending />} />
             <Route path="transaction" element={<Transaction />} />
             <Route path="category" element={<Category />} />
             <Route path="*" element={<Error />} />
