@@ -34,7 +34,6 @@ function Transaction() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const spendings = useSelector((state) => state.spending.spendings);
-  console.log(spendings);
 
   useEffect(() => {
     dispatch(fetchSpending());

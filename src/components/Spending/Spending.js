@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import TextError from "../Error/TextError";
 import { fetchCategory } from "../../redux/category/categoryActions";
 import { addSpending } from "../../redux/spending/spendingActions";
+import { useParams } from "react-router-dom";
 
 // const SpendingContainer = styled.div`
 //     display: flex;
@@ -22,9 +23,12 @@ import { addSpending } from "../../redux/spending/spendingActions";
 //     gap: 21px;
 // `;
 
-function Spending() {
+function Spending(props) {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
+  const { id } = useParams();
+  console.log(id);
+
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
