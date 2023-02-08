@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { formattedDate } from "../../util/utils";
 import { useNavigate } from "react-router-dom";
 
+import binIcon from "../../images/delete.png";
+import navIcon from "../../images/chevron-right.png";
+
 const TransactionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,6 +33,27 @@ const Category = styled.div`
   flex-direction: column;
 `;
 
+const PriceAction = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Price = styled.div`
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
+const Icon = styled.img`
+  width: 15px;
+  height: 15px;
+`;
+
+const Action = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 function Transaction() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,17 +67,24 @@ function Transaction() {
     <TransactionContainer>
       {spendings.length > 0 &&
         spendings.map((item) => (
-          <TransactionItem
-            key={item._id}
-            onClick={() => {
-              navigate(`/spending/${item._id}`);
-            }}
-          >
+          <TransactionItem key={item._id}>
             <Category>
               <span>{item.note}</span>
               <span>{formattedDate(item.date)}</span>
             </Category>
-            <div>{item.amount}</div>
+            <PriceAction>
+              <Price>{item.amount}</Price>
+              <Action>
+                <Icon src={binIcon} alt="delete" />
+                <Icon
+                  src={navIcon}
+                  alt="navigate"
+                  onClick={() => {
+                    navigate(`/spending/${item._id}`);
+                  }}
+                />
+              </Action>
+            </PriceAction>
           </TransactionItem>
         ))}
     </TransactionContainer>
