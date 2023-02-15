@@ -26,19 +26,12 @@ import { useParams } from "react-router-dom";
 function Spending(props) {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
+  const spendings = useSelector((state) => state.spending.spendings);
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
-
-  const initialValues = {
-    date: new Date(),
-    amount: "0",
-    category: "",
-    note: ""
-  };
 
   const validationSchema = Yup.object({
     date: Yup.string().required("Required"),
@@ -51,9 +44,29 @@ function Spending(props) {
     dispatch(addSpending(values));
   };
 
+  const getData = () => {
+    let initialValues = {
+      date: new Date(),
+      amount: "0",
+      category: "",
+      note: ""
+    };
+    if (id) {
+      const spending = spendings.filter((spending) => spending._id === id);
+      initialValues = {
+        date: new Date(spending[0].date),
+        amount: spending[0].amount,
+        category: spending[0].category,
+        note: spending[0].note
+      };
+    }
+
+    return initialValues;
+  };
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={getData()}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
