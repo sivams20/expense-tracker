@@ -7,7 +7,10 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import TextError from "../Error/TextError";
 import { fetchCategory } from "../../redux/category/categoryActions";
-import { addSpending } from "../../redux/spending/spendingActions";
+import {
+  addSpending,
+  updateSpending
+} from "../../redux/spending/spendingActions";
 import { useParams } from "react-router-dom";
 
 // const SpendingContainer = styled.div`
@@ -41,7 +44,13 @@ function Spending(props) {
   });
 
   const onSubmit = (values) => {
-    dispatch(addSpending(values));
+    if (id) {
+      const spending = { spendingId: id };
+      const obj = { ...spending, ...values };
+      dispatch(updateSpending(obj));
+    } else {
+      dispatch(addSpending(values));
+    }
   };
 
   const getData = () => {

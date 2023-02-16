@@ -5,7 +5,10 @@ import {
   ADD_SPENDING_SUCCESS,
   FETCH_SPENDING_FAILURE,
   FETCH_SPENDING_REQUEST,
-  FETCH_SPENDING_SUCCESS
+  FETCH_SPENDING_SUCCESS,
+  UPDATE_SPENDING_FAILURE,
+  UPDATE_SPENDING_REQUEST,
+  UPDATE_SPENDING_SUCCESS
 } from "./spendingActionTypes";
 
 export const addSpendingRequest = (data) => ({
@@ -37,6 +40,19 @@ export const fetchSpendingFailure = (data) => ({
   payload: data
 });
 
+export const updateSpendingRequest = () => ({
+  type: UPDATE_SPENDING_REQUEST
+});
+
+export const updateSpendingSuccess = (data) => ({
+  type: UPDATE_SPENDING_SUCCESS,
+  payload: data
+});
+
+export const updateSpendingFailure = () => ({
+  type: UPDATE_SPENDING_FAILURE
+});
+
 export const addSpending = function (data) {
   return function (dispatch) {
     const url = "http://localhost:5000/spending/add";
@@ -65,4 +81,19 @@ export const fetchSpending = () => (dispatch) => {
       const errorMessage = error;
       dispatch(fetchSpendingFailure(errorMessage));
     });
+};
+
+export const updateSpending = function (data) {
+  return function (dispatch) {
+    const url = "http://localhost:5000/spending/update";
+    axios
+      .post(url, data)
+      .then((response) => {
+        dispatch(updateSpendingRequest);
+        dispatch(updateSpendingSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(updateSpendingFailure("Some error occured"));
+      });
+  };
 };
