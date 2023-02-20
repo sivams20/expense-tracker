@@ -22,7 +22,12 @@ axios.interceptors.response.use(
   },
   (error) => {
     console.log(error);
-    return Promise.reject(error);
+    const status = error.response?.status || 500;
+    if (status === 401) {
+      window.location = window.location.protocol + "//" + window.location.host;
+    } else {
+      return Promise.reject(error); // Delegate error to calling side
+    }
   }
 );
 
