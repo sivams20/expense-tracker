@@ -13,20 +13,15 @@ import {
 } from "../../redux/spending/spendingActions";
 import { useParams } from "react-router-dom";
 
-// const SpendingContainer = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// `;
-
-// const SpendingForm = styled.form`
-//     width: 500px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 21px;
-// `;
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 function Spending(props) {
+  const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
   const spendings = useSelector((state) => state.spending.spendings);
@@ -44,6 +39,7 @@ function Spending(props) {
   });
 
   const onSubmit = (values) => {
+    setOpen(true);
     if (id) {
       const spending = { spendingId: id };
       const obj = { ...spending, ...values };
@@ -51,6 +47,10 @@ function Spending(props) {
     } else {
       dispatch(addSpending(values));
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const getData = () => {
@@ -74,58 +74,80 @@ function Spending(props) {
   };
 
   return (
-    <Formik
-      initialValues={getData()}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {/* <SpendingContainer> */}
-      <Form>
-        <div className="form-control">
-          <label htmlFor="amount">Amount</label>
-          <Field type="text" id="amount" name="amount" />
-          <ErrorMessage name="amount" component={TextError} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="category">Category</label>
-          <Field as="select" id="category" name="category">
-            {categories.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </Field>
-          <ErrorMessage name="category" component={TextError} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="note">Note</label>
-          <Field type="text" id="note" name="note" />
-          <ErrorMessage name="note">
-            {(errorMssg) => <div className="error">{errorMssg}</div>}
-          </ErrorMessage>
-        </div>
-        <div className="form-control">
-          <label htmlFor="date">Date</label>
-          <Field name="date">
-            {({ form, field }) => {
-              const { setFieldValue } = form;
-              const { value } = field;
-              return (
-                <DateView
-                  id="date"
-                  selected={value}
-                  onChange={(val) => setFieldValue("date", val)}
-                  dateFormat="dd/MM/yyyy"
-                />
-              );
-            }}
-          </Field>
-          <ErrorMessage component={TextError} name="date" />
-        </div>
-        <button>Add Expense</button>
-      </Form>
-      {/* </SpendingContainer> */}
-    </Formik>
+    <>
+      <Formik
+        initialValues={getData()}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {/* <SpendingContainer> */}
+        <Form>
+          <div className="form-control">
+            <label htmlFor="amount">Amount</label>
+            <Field type="text" id="amount" name="amount" />
+            <ErrorMessage name="amount" component={TextError} />
+          </div>
+          <div className="form-control">
+            <label htmlFor="category">Category</label>
+            <Field as="select" id="category" name="category">
+              {categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="category" component={TextError} />
+          </div>
+          <div className="form-control">
+            <label htmlFor="note">Note</label>
+            <Field type="text" id="note" name="note" />
+            <ErrorMessage name="note">
+              {(errorMssg) => <div className="error">{errorMssg}</div>}
+            </ErrorMessage>
+          </div>
+          <div className="form-control">
+            <label htmlFor="date">Date</label>
+            <Field name="date">
+              {({ form, field }) => {
+                const { setFieldValue } = form;
+                const { value } = field;
+                return (
+                  <DateView
+                    id="date"
+                    selected={value}
+                    onChange={(val) => setFieldValue("date", val)}
+                    dateFormat="dd/MM/yyyy"
+                  />
+                );
+              }}
+            </Field>
+            <ErrorMessage component={TextError} name="date" />
+          </div>
+          <button>Add Expense</button>
+        </Form>
+        {/* </SpendingContainer> */}
+      </Formik>
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Spendings saved/updated successfully.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} autoFocus>
+              Okay
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
   );
 }
 
