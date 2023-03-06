@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   loading: false,
+  success: "",
   error: "",
   spendingsAdded: [],
   spendings: []
@@ -19,6 +20,8 @@ const spendingReducer = (state = initialState, action) => {
     case ADD_SPENDING_REQUEST:
       return {
         ...state,
+        success: "",
+        error: "",
         loading: true
       };
 
@@ -26,6 +29,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        success: action.payload.message,
         error: "",
         spendingsAdded: [...state.spendingsAdded, action.payload]
       };
@@ -34,6 +38,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        success: "",
         error: action.payload
       };
 
@@ -41,6 +46,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        success: "",
         error: action.payload
       };
 
@@ -48,6 +54,8 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        success: "",
+        error: "",
         spendings: action.payload
       };
 
@@ -55,6 +63,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        success: "",
         error: action.payload
       };
 
