@@ -8,7 +8,8 @@ import {
   FETCH_SPENDING_SUCCESS,
   UPDATE_SPENDING_FAILURE,
   UPDATE_SPENDING_REQUEST,
-  UPDATE_SPENDING_SUCCESS
+  UPDATE_SPENDING_SUCCESS,
+  HIDE_SPENDING_SUCCESS_DIALOG
 } from "./spendingActionTypes";
 
 export const addSpendingRequest = (data) => ({
@@ -51,6 +52,10 @@ export const updateSpendingSuccess = (data) => ({
 
 export const updateSpendingFailure = () => ({
   type: UPDATE_SPENDING_FAILURE
+});
+
+export const hideSpendingSuccessDialog = () => ({
+  type: HIDE_SPENDING_SUCCESS_DIALOG
 });
 
 export const addSpending = function (data) {

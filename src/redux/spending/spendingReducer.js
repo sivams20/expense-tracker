@@ -4,12 +4,13 @@ import {
   ADD_SPENDING_SUCCESS,
   FETCH_SPENDING_FAILURE,
   FETCH_SPENDING_REQUEST,
-  FETCH_SPENDING_SUCCESS
+  FETCH_SPENDING_SUCCESS,
+  HIDE_SPENDING_SUCCESS_DIALOG
 } from "./spendingActionTypes";
 
 const initialState = {
   loading: false,
-  success: "",
+  success: false,
   error: "",
   spendingsAdded: [],
   spendings: []
@@ -20,7 +21,7 @@ const spendingReducer = (state = initialState, action) => {
     case ADD_SPENDING_REQUEST:
       return {
         ...state,
-        success: "",
+        success: false,
         error: "",
         loading: true
       };
@@ -29,7 +30,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        success: action.payload.message,
+        success: true,
         error: "",
         spendingsAdded: [...state.spendingsAdded, action.payload]
       };
@@ -38,7 +39,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        success: "",
+        success: false,
         error: action.payload
       };
 
@@ -46,7 +47,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        success: "",
+        success: false,
         error: action.payload
       };
 
@@ -54,7 +55,7 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        success: "",
+        success: false,
         error: "",
         spendings: action.payload
       };
@@ -63,8 +64,14 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        success: "",
+        success: false,
         error: action.payload
+      };
+
+    case HIDE_SPENDING_SUCCESS_DIALOG:
+      return {
+        ...state,
+        success: false
       };
 
     default:

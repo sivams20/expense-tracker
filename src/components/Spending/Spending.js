@@ -9,6 +9,7 @@ import TextError from "../Error/TextError";
 import { fetchCategory } from "../../redux/category/categoryActions";
 import {
   addSpending,
+  hideSpendingSuccessDialog,
   updateSpending
 } from "../../redux/spending/spendingActions";
 import { useParams } from "react-router-dom";
@@ -21,9 +22,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 function Spending(props) {
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
+  const open = useSelector((state) => state.spending.success);
   const spendings = useSelector((state) => state.spending.spendings);
   const { id } = useParams();
 
@@ -39,7 +41,7 @@ function Spending(props) {
   });
 
   const onSubmit = (values) => {
-    setOpen(true);
+    //setOpen(true);
     if (id) {
       const spending = { spendingId: id };
       const obj = { ...spending, ...values };
@@ -50,7 +52,8 @@ function Spending(props) {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(hideSpendingSuccessDialog());
+    //setOpen(false);
   };
 
   const getData = () => {
