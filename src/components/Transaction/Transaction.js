@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 import binIcon from "../../images/delete.png";
 import navIcon from "../../images/chevron-right.png";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from "@mui/material";
 
 const TransactionContainer = styled.div`
   display: flex;
@@ -55,6 +63,9 @@ const Action = styled.div`
 `;
 
 function Transaction() {
+  const [open, setOpen] = React.useState(false);
+  const [id, setId] = React.useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const spendings = useSelector((state) => state.spending.spendings);
@@ -62,6 +73,19 @@ function Transaction() {
   useEffect(() => {
     dispatch(fetchSpending());
   }, [dispatch]);
+
+  const deleteTransaction = (id) => {
+    setOpen(true);
+    setId(id);
+  };
+
+  const handleNo = () => {
+    setOpen(false);
+  };
+
+  const handleYes = () => {
+    setOpen(false);
+  };
 
   return (
     <TransactionContainer>
@@ -75,7 +99,11 @@ function Transaction() {
             <PriceAction>
               <Price>{item.amount}</Price>
               <Action>
-                <Icon src={binIcon} alt="delete" />
+                <Icon
+                  src={binIcon}
+                  alt="delete"
+                  onClick={() => deleteTransaction(item._id)}
+                />
                 <Icon
                   src={navIcon}
                   alt="navigate"
@@ -87,6 +115,25 @@ function Transaction() {
             </PriceAction>
           </TransactionItem>
         ))}
+      <Dialog
+        open={open}
+        onClose={handleNo}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Confirmation?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete Transaction.?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleNo}>NO</Button>
+          <Button onClick={handleYes} autoFocus>
+            YES
+          </Button>
+        </DialogActions>
+      </Dialog>
     </TransactionContainer>
   );
 }
