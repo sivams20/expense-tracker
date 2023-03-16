@@ -53,7 +53,6 @@ function Spending(props) {
 
   const handleClose = () => {
     dispatch(hideSpendingSuccessDialog());
-    //setOpen(false);
   };
 
   const getData = () => {

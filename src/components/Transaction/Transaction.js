@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpending } from "../../redux/spending/spendingActions";
+import {
+  deleteSpending,
+  fetchSpending
+} from "../../redux/spending/spendingActions";
 import styled from "styled-components";
 import { formattedDate } from "../../util/utils";
 import { useNavigate } from "react-router-dom";
@@ -84,6 +87,8 @@ function Transaction() {
   };
 
   const handleYes = () => {
+    const obj = { spendingId: id };
+    dispatch(deleteSpending(obj));
     setOpen(false);
   };
 

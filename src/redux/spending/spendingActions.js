@@ -9,7 +9,10 @@ import {
   UPDATE_SPENDING_FAILURE,
   UPDATE_SPENDING_REQUEST,
   UPDATE_SPENDING_SUCCESS,
-  HIDE_SPENDING_SUCCESS_DIALOG
+  HIDE_SPENDING_SUCCESS_DIALOG,
+  DELETE_SPENDING_REQUEST,
+  DELETE_SPENDING_SUCCESS,
+  DELETE_SPENDING_FAILURE
 } from "./spendingActionTypes";
 
 export const addSpendingRequest = (data) => ({
@@ -58,6 +61,19 @@ export const hideSpendingSuccessDialog = () => ({
   type: HIDE_SPENDING_SUCCESS_DIALOG
 });
 
+export const deleteSpendingRequest = () => ({
+  type: DELETE_SPENDING_REQUEST
+});
+
+export const deleteSpendingSuccess = (data) => ({
+  type: DELETE_SPENDING_SUCCESS,
+  payload: data
+});
+
+export const deleteSpendingFailure = () => ({
+  type: DELETE_SPENDING_FAILURE
+});
+
 export const addSpending = function (data) {
   return function (dispatch) {
     const url = "http://localhost:5000/spending/add";
@@ -96,6 +112,21 @@ export const updateSpending = function (data) {
       .then((response) => {
         dispatch(updateSpendingRequest);
         dispatch(updateSpendingSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(updateSpendingFailure("Some error occured"));
+      });
+  };
+};
+
+export const deleteSpending = function (data) {
+  return function (dispatch) {
+    const url = "http://localhost:5000/spending/delete";
+    axios
+      .post(url, data)
+      .then((response) => {
+        dispatch(deleteSpendingRequest);
+        dispatch(deleteSpendingSuccess(response.data));
       })
       .catch((error) => {
         dispatch(updateSpendingFailure("Some error occured"));

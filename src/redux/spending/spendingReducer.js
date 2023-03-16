@@ -2,6 +2,9 @@ import {
   ADD_SPENDING_FAILURE,
   ADD_SPENDING_REQUEST,
   ADD_SPENDING_SUCCESS,
+  DELETE_SPENDING_FAILURE,
+  DELETE_SPENDING_REQUEST,
+  DELETE_SPENDING_SUCCESS,
   FETCH_SPENDING_FAILURE,
   FETCH_SPENDING_REQUEST,
   FETCH_SPENDING_SUCCESS,
@@ -63,7 +66,7 @@ const spendingReducer = (state = initialState, action) => {
     case FETCH_SPENDING_FAILURE:
       return {
         ...state,
-        loading: false,
+        loading: true,
         success: false,
         error: action.payload
       };
@@ -72,6 +75,28 @@ const spendingReducer = (state = initialState, action) => {
       return {
         ...state,
         success: false
+      };
+
+    case DELETE_SPENDING_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case DELETE_SPENDING_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        error: ""
+      };
+
+    case DELETE_SPENDING_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload
       };
 
     default:
