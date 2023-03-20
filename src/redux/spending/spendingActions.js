@@ -127,6 +127,7 @@ export const deleteSpending = function (data) {
       .then((response) => {
         dispatch(deleteSpendingRequest);
         dispatch(deleteSpendingSuccess(response.data));
+        dispatch(fetchSpending());
       })
       .catch((error) => {
         dispatch(updateSpendingFailure("Some error occured"));
