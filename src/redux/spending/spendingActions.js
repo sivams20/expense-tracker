@@ -130,7 +130,7 @@ export const deleteSpending = function (data) {
         dispatch(fetchSpending());
       })
       .catch((error) => {
-        dispatch(updateSpendingFailure("Some error occured"));
+        dispatch(deleteSpendingFailure("Some error occured"));
       });
   };
 };
