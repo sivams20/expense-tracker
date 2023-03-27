@@ -8,7 +8,10 @@ import {
   FETCH_SPENDING_FAILURE,
   FETCH_SPENDING_REQUEST,
   FETCH_SPENDING_SUCCESS,
-  HIDE_SPENDING_SUCCESS_DIALOG
+  HIDE_SPENDING_SUCCESS_DIALOG,
+  UPDATE_SPENDING_FAILURE,
+  UPDATE_SPENDING_REQUEST,
+  UPDATE_SPENDING_SUCCESS
 } from "./spendingActionTypes";
 
 const initialState = {
@@ -39,6 +42,30 @@ const spendingReducer = (state = initialState, action) => {
       };
 
     case ADD_SPENDING_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload
+      };
+
+    case UPDATE_SPENDING_REQUEST:
+      return {
+        ...state,
+        success: false,
+        error: "",
+        loading: true
+      };
+
+    case UPDATE_SPENDING_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        error: ""
+      };
+
+    case UPDATE_SPENDING_FAILURE:
       return {
         ...state,
         loading: false,
