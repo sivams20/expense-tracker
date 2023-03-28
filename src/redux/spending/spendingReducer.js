@@ -113,6 +113,9 @@ const spendingReducer = (state = initialState, action) => {
     case DELETE_SPENDING_SUCCESS:
       return {
         ...state,
+        spendings: state.spendings.filter(
+          (item, index) => item._id !== action.payload.spendingId
+        ),
         loading: false,
         success: true,
         error: ""

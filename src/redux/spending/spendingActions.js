@@ -111,7 +111,7 @@ export const updateSpending = function (data) {
       .post(url, data)
       .then((response) => {
         dispatch(updateSpendingRequest);
-        dispatch(updateSpendingSuccess(response.data));
+        dispatch(updateSpendingSuccess(data));
       })
       .catch((error) => {
         dispatch(updateSpendingFailure("Some error occured"));
@@ -126,7 +126,7 @@ export const deleteSpending = function (data) {
       .post(url, data)
       .then((response) => {
         dispatch(deleteSpendingRequest);
-        dispatch(deleteSpendingSuccess(response.data));
+        dispatch(deleteSpendingSuccess(data));
         dispatch(fetchSpending());
       })
       .catch((error) => {
