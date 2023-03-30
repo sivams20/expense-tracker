@@ -6,6 +6,7 @@ import Category from "./components/Category/Category";
 import Error from "./components/Error/Error";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Signup from "./components/Signup/Category";
 import Spending from "./components/Spending/Spending";
 import Transaction from "./components/Transaction/Transaction";
 import store from "./redux/store";
@@ -15,10 +16,11 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        {pathname === "/" ? null : <Navbar />}
+        {pathname === "/" || pathname === "/signup" ? null : <Navbar />}
         <div className="container">
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
             <Route path="spending" element={<Spending />} />
             <Route path="spending/:id" element={<Spending />} />
             <Route path="transaction" element={<Transaction />} />
