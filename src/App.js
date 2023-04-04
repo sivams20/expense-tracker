@@ -6,7 +6,7 @@ import Category from "./components/Category/Category";
 import Error from "./components/Error/Error";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
-import Signup from "./components/Signup/Category";
+import Signup from "./components/Signup/Signup";
 import Spending from "./components/Spending/Spending";
 import Transaction from "./components/Transaction/Transaction";
 import store from "./redux/store";
