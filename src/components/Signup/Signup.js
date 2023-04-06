@@ -29,18 +29,20 @@ const Button = styled.button`
 
 function Signup() {
   return (
-    <SignupContainer>
-      <SignupForm>
-        <input type="text" name="email" placeholder="Enter email" />
-        <input type="password" name="password" placeholder="Enter password" />
-        <input
-          type="password"
-          name="confirmpassword"
-          placeholder="Confirm password"
-        />
-        <Button type="submit">Signup</Button>
-      </SignupForm>
-    </SignupContainer>
+    <>
+      <SignupContainer>
+        <SignupForm>
+          <input type="text" name="email" placeholder="Enter email" />
+          <input type="password" name="password" placeholder="Enter password" />
+          <input
+            type="password"
+            name="confirmpassword"
+            placeholder="Confirm password"
+          />
+          <Button type="submit">Signup</Button>
+        </SignupForm>
+      </SignupContainer>
+    </>
   );
 }
 

@@ -50,17 +50,17 @@ function Login() {
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      password: ""
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
         .min(3, "Must be minimum 3 characters")
-        .required("Required"),
+        .required("Required")
     }),
     onSubmit: (values) => {
       dispatch(loginUser(values, navigate));
-    },
+    }
   });
 
   return (
