@@ -22,7 +22,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 function Spending(props) {
-  //const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
   const open = useSelector((state) => state.spending.success);
@@ -41,7 +40,6 @@ function Spending(props) {
   });
 
   const onSubmit = (values) => {
-    //setOpen(true);
     if (id) {
       const spending = { spendingId: id };
       const obj = { ...spending, ...values };
@@ -71,7 +69,6 @@ function Spending(props) {
         note: spending[0].note
       };
     }
-
     return initialValues;
   };
 

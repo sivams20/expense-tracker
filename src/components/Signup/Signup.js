@@ -1,5 +1,8 @@
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import React from "react";
+import * as Yup from "yup";
 import styled from "styled-components";
+import TextError from "../Error/TextError";
 
 const SignupContainer = styled.div`
   position: fixed;
@@ -13,7 +16,7 @@ const SignupContainer = styled.div`
   align-items: center;
 `;
 
-const SignupForm = styled.form`
+const SignupForm = styled.div`
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -28,20 +31,52 @@ const Button = styled.button`
 `;
 
 function Signup() {
+  let initialValues = {
+    email: "",
+    password: "",
+    confirm: ""
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string().required("Required"),
+    password: Yup.string().required("Required"),
+    confirm: Yup.string().required("Required")
+  });
+
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
   return (
     <>
-      <SignupContainer>
-        <SignupForm>
-          <input type="text" name="email" placeholder="Enter email" />
-          <input type="password" name="password" placeholder="Enter password" />
-          <input
-            type="password"
-            name="confirmpassword"
-            placeholder="Confirm password"
-          />
-          <Button type="submit">Signup</Button>
-        </SignupForm>
-      </SignupContainer>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <SignupContainer>
+          <SignupForm>
+            <Form>
+              <div className="form-control">
+                <label htmlFor="email">Email</label>
+                <Field type="text" id="email" name="email" />
+                <ErrorMessage name="email" component={TextError} />
+              </div>
+              <div className="form-control">
+                <label htmlFor="password">Password</label>
+                <Field type="text" id="password" name="password" />
+                <ErrorMessage name="password" component={TextError} />
+              </div>
+              <div className="form-control">
+                <label htmlFor="confirm">Confirm Password</label>
+                <Field type="text" id="confirm" name="confirm" />
+                <ErrorMessage name="confirm" component={TextError} />
+              </div>
+              <Button type="submit">Signup</Button>
+            </Form>
+          </SignupForm>
+        </SignupContainer>
+      </Formik>
     </>
   );
 }
