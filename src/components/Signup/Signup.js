@@ -38,9 +38,14 @@ function Signup() {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().required("Required"),
-    password: Yup.string().required("Required"),
-    confirm: Yup.string().required("Required")
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(5, "Your password is too short."),
+    confirm: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    )
   });
 
   const onSubmit = (values) => {
@@ -64,12 +69,12 @@ function Signup() {
               </div>
               <div className="form-control">
                 <label htmlFor="password">Password</label>
-                <Field type="text" id="password" name="password" />
+                <Field type="password" id="password" name="password" />
                 <ErrorMessage name="password" component={TextError} />
               </div>
               <div className="form-control">
                 <label htmlFor="confirm">Confirm Password</label>
-                <Field type="text" id="confirm" name="confirm" />
+                <Field type="password" id="confirm" name="confirm" />
                 <ErrorMessage name="confirm" component={TextError} />
               </div>
               <Button type="submit">Signup</Button>
