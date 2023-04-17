@@ -1,3 +1,6 @@
+import { LOGIN_FAILURE } from "../login/loginActionTypes";
+import { SIGNUP_SUCCESS } from "./signupActionTypes";
+
 const initialState = {
   successMessage: "",
   errorMessage: ""
