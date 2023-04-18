@@ -5,6 +5,7 @@ import styled from "styled-components";
 import TextError from "../Error/TextError";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/signup/signupActions";
+import bcrypt from "bcryptjs";
 
 const SignupContainer = styled.div`
   position: fixed;
@@ -33,6 +34,8 @@ const Button = styled.button`
 `;
 
 function Signup() {
+  const salt = bcrypt.genSaltSync(10);
+  console.log(salt);
   const dispatch = useDispatch();
   let initialValues = {
     email: "",
@@ -53,7 +56,12 @@ function Signup() {
 
   const onSubmit = (values) => {
     console.log(values);
-    dispatch(signupUser(values));
+    const hash = bcrypt.hashSync(values.password, salt);
+    console.log(hash);
+    //console.log(bcrypt.compareSync("track//", hash));
+    values = { ...values, password: hash, confirm: hash };
+    console.log(values);
+    //dispatch(signupUser(values));
   };
 
   return (
