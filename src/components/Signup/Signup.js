@@ -32,7 +32,6 @@ const Button = styled.button`
 `;
 
 function Signup() {
-  console.log(salt);
   //const dispatch = useDispatch();
   let initialValues = {
     email: "",
