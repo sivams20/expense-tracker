@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import TextError from "../Error/TextError";
 import { useDispatch } from "react-redux";
-import { signupUser } from "../../redux/signup/signupActions";
 import bcrypt from "bcryptjs";
 
 const SignupContainer = styled.div`
@@ -36,7 +35,7 @@ const Button = styled.button`
 function Signup() {
   const salt = bcrypt.genSaltSync(10);
   console.log(salt);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   let initialValues = {
     email: "",
     password: "",

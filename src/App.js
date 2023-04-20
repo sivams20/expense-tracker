@@ -17,7 +17,6 @@ function App() {
   // }
 
   useEffect(() => {
-    /* global google */
     // google.accounts.id.initialize({
     //   clientId:
     //     "296149066603-3g5stn3jp22a4sgvk429m5eu20gkj4s2.apps.googleusercontent.com",
