@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/login/loginActions";
+import useLocalStorage from "../../util/useLocalStorage";
 
 const LoginContainer = styled.div`
   position: fixed;
@@ -47,6 +48,7 @@ const Button = styled.button`
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const setToken = useLocalStorage("token", "");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -59,7 +61,7 @@ function Login() {
         .required("Required")
     }),
     onSubmit: (values) => {
-      dispatch(loginUser(values, navigate));
+      dispatch(loginUser(values, navigate, setToken));
     }
   });
 

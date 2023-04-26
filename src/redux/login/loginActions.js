@@ -24,14 +24,15 @@ export const logout = () => ({
   type: LOGOUT
 });
 
-export const loginUser = (credential, navigate) => (dispatch) => {
+export const loginUser = (credential, navigate, setToken) => (dispatch) => {
   dispatch(login());
   const url = "http://localhost:5000/user/signin";
   axios
     .post(url, credential)
     .then((response) => {
       dispatch(loginSuccess(response.data.token));
-      localStorage.setItem("token", response.data.token);
+      //localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
       navigate("spending");
     })
     .catch((error) => {

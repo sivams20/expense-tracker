@@ -5,15 +5,22 @@ function useLocalStorage(key, initialValue) {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem(key);
       if (saved !== null) {
-        return JSON.parse(saved);
+        return saved;
       }
     }
     return initialValue;
   });
+
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  }, [value]);
-  return [value, setValue];
+    window.localStorage.setItem(key, value);
+  }, [key, value]);
+
+  const setLocalStorageValue = (newValue) => {
+    setValue(newValue);
+    window.localStorage.setItem(key, newValue);
+  };
+
+  return setLocalStorageValue;
 }
 
 export default useLocalStorage;
